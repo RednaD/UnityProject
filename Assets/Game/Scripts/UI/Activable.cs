@@ -8,14 +8,14 @@ public abstract class Activable : MonoBehaviour, Interactable
     public bool                             isActive;
 
     public StateVariable                    stateMachine;
-    public StateSO                          allowedStates;        // TODO list of state where it can interact
+    public List<StateSO>                    allowedStates;
 
     // Interactable
     public bool                             isInteractable;
     public bool                             defaultInteractableState;
 
     [Header ("Render")]
-    [SerializeField] private new Renderer   renderer;
+    private new Renderer                    renderer;
     public Material                         defaultMaterial;
     public Material                         hoveredMaterial;
 
@@ -23,6 +23,7 @@ public abstract class Activable : MonoBehaviour, Interactable
     {
         renderer = GetComponent<Renderer>();
         defaultMaterial = GetComponent<MeshRenderer>().material;
+        isInteractable = defaultInteractableState;
     }
 
     // SELECTION BEHAVIOUR
@@ -39,13 +40,18 @@ public abstract class Activable : MonoBehaviour, Interactable
 
     public void TryInteract()
     {
-        if (!isInteractable || allowedStates != stateMachine.v) return;       // TODO allowedStates.Contains(stateMachine)
+        if (!isInteractable || !allowedStates.Contains(stateMachine.v)) return;
         OnSelect();
     }
     
-    public void SetState(bool state)
+    public void SetInteractable(bool state)
     {
         isInteractable = state;
+    }
+
+    public void SetState(bool state)
+    {
+        isActive = state;
     }
 
     public bool GetState()
@@ -68,15 +74,9 @@ public abstract class Activable : MonoBehaviour, Interactable
     {
         if (!isActive)
         {
-            if (state) GetComponent<Renderer>().material = hoveredMaterial; // TODO StartAnimation
-            else GetComponent<Renderer>().material = defaultMaterial;
+            if (state) renderer.material = hoveredMaterial; // TODO StartAnimation
+            else renderer.material = defaultMaterial;
             //else ResetMaterial(); // TODO StopAnimation
         }
     }
-
-    /*public bool CheckIfInteractable()
-    {
-        // TODO if (!isSelectable) play error sound
-        return isSelectable ^ isSelected;
-    }*/
 }

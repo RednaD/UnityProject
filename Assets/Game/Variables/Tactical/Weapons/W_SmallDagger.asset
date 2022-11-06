@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd9e2f891c8b61b8a0f55b91ce0858c, type: 3}
+  m_Name: W_SmallDagger
+  m_EditorClassIdentifier: 
+  type: {fileID: 11400000, guid: 707a7200778dec688a2ed06e0950a33b, type: 2}
+  range: 5
+  power: 2
+  effect: {fileID: 0}
+  effectProb: 0
+  effectPower: 0
+  attack1: {fileID: 0}
+  attack2: {fileID: 0}

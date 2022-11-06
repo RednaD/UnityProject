@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "W_", menuName = "VariableSO/WeaponSO")]
-public class WeaponSO : ScriptableObject
+public class WeaponSO : CollectableSO
 {
     public WeaponTypeSO     type;
     public int              range;

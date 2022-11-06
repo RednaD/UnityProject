@@ -6,5 +6,14 @@ using UnityEngine;
 public class PartySO_TC : ScriptableObject
 {
     public List <TacticalCharacter> v;
-    //public List <CharacterBehaviour> v;
+
+    public TacticalCharacter GetSelected()
+    {
+        foreach (TacticalCharacter character in v)
+        {
+            Debug.Log(character);
+            if (character.isSelected) return character;
+        }
+        return null;
+    }
 }

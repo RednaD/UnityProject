@@ -223,22 +223,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   stateMachine: {fileID: 11400000, guid: a23d6db0e6083039b9d362691091eaa2, type: 2}
-  allowedStates: {fileID: 11400000, guid: a3c4b55ce4475d3b1ba0d4382b93ddcf, type: 2}
+  allowedStates:
+  - {fileID: 11400000, guid: a3c4b55ce4475d3b1ba0d4382b93ddcf, type: 2}
   isInteractable: 0
   defaultInteractableState: 0
   renderer: {fileID: 0}
   defaultMaterial: {fileID: 0}
   hoveredMaterial: {fileID: 2100000, guid: cd9e934880aeac11b92fd09e4116de36, type: 2}
   onTileSelected: {fileID: 11400000, guid: 1c26de1ea9b7a59b0bc4ea0fe95018e4, type: 2}
-  moveState: {fileID: 11400000, guid: a3c4b55ce4475d3b1ba0d4382b93ddcf, type: 2}
+  allowedState: {fileID: 11400000, guid: a3c4b55ce4475d3b1ba0d4382b93ddcf, type: 2}
   tile: {fileID: 0}
   isTarget: 0
   isWalkable: 0
   defaultWalkable: 0
   isOccupied: 0
-  isProcessed: 0
-  parent: {fileID: 0}
-  distance: 0
   CharacterPosNode: {fileID: 4786704024144268729}
   posGridX: 0
   posGridZ: 0

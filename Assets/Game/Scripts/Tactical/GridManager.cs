@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public CharacterEventSO     onShowCharacterActions;
+
     public TacticalTile[,]      grid;
     public TacticalTile         emptyTile;
     public PartySO_GO           partyGO;
     public PartySO_TC           party;
-    public List<TacticalTile>   startPosGroup;
+    public PartySO_GO           enemiesGO;
+    public GroupeSO_TNPC        enemies;
+    public List<TacticalTile>   startPosParty;
+    public List<TacticalTile>   startPosEnemies;
+
     float minX;
     float minZ;
+    int lenZ;
+    int lenX;
 
     //public IMovementBehaviour   movementBehaviour;
 
@@ -57,8 +65,8 @@ public class GridManager : MonoBehaviour
             }
             i++;
         }
-        int lenZ = grid.GetLength(0);
-        int lenX = grid.GetLength(1);
+        lenZ = grid.GetLength(0);
+        lenX = grid.GetLength(1);
         for (i = 0; i < lenZ; i++)
         {
             for (int j = 0; j < lenX; j++)
@@ -74,24 +82,60 @@ public class GridManager : MonoBehaviour
 
         GameObject playerGO;
         TacticalCharacter playerTC;
+        party.v.Clear();
         i = 0;
         while (i < partyGO.v.Count)
         {
             playerGO = Instantiate(partyGO.v[i]);
             playerTC = playerGO.GetComponent<TacticalCharacter>();
             //playerTC.move = new movementBehaviour;
-            playerTC.SetToTile(startPosGroup[i]);
+            playerTC.SetToTile(startPosParty[i]);
             playerTC.Reset();
             party.v.Add(playerTC);
             i++;
         }
+
+        GameObject enemyGO;
+        TacticalNPC enemyTC;
+        enemies.v.Clear();
+        i = 0;
+        while (i < enemiesGO.v.Count)
+        {
+            enemyGO = Instantiate(enemiesGO.v[i]);
+            enemyTC = enemyGO.GetComponent<TacticalNPC>();
+            enemyTC.SetToTile(startPosEnemies[i]);
+            enemyTC.Reset();
+            enemies.v.Add(enemyTC);
+            i++;
+        }
     }
 
-    public void OnCharacterSelected(TacticalCharacter character)       // TODO show possible actions (attack, move, special)
+    public void OnCharacterSelected(TacticalCharacter activeCharacter)
     {
         ResetGrid();
-        Debug.Log("Hello my name is " + character);
+        //foreach(TacticalCharacter character in party.v) character.onSetSelection(activeCharacter);
+        onShowCharacterActions.Raise(activeCharacter);
+    }
+
+    public void OnCharacterMoving(TacticalCharacter character)
+    {
+        ResetGrid();
+        //if (character.hasMoved) return;
         GetTile(character.posX, character.posZ).FindReachableTiles(character, grid);
+    }
+
+    public void OnCharacterAttacking(TacticalCharacter character)
+    {
+        ResetGrid();
+        //if (character.hasAttacked) return;
+        character.FindReachableTargets(enemies);
+    }
+
+    public void OnCharacterUsingSpecial(TacticalCharacter character)
+    {
+        ResetGrid();
+        //if (character.hasAttacked) return;
+        //character.FindReachableTargets(enemies);
     }
 
     public TacticalTile GetTile(float x, float z)
@@ -101,27 +145,20 @@ public class GridManager : MonoBehaviour
 
     public void OnNewTurn()
     {
-        foreach(TacticalCharacter character in party.v)
-        {
-            character.Reset();
-        }
+        foreach(TacticalCharacter character in party.v) character.Reset();
+        ResetGrid();
     }
 
     public void ResetGrid()
     {
-        Debug.Log("Grid is being reseted");
-        int lenZ = grid.GetLength(0);
-        int lenX = grid.GetLength(1);
         for (int i = 0; i < lenZ; i++)
         {
             for (int j = 0; j < lenX; j++)
             {
                 if (grid[i, j] != null) grid[i, j].Reset();
-                /*if (grid[i, j] != null) grid[i, j].isProcessed = false;
-                if (grid[i, j] != null) grid[i, j].isSelectable = false;
-                if (grid[i, j] != null) grid[i, j].isSelected = false;
-                if (grid[i, j] != null) grid[i, j].GetContextMaterial();*/
             }
         }
+        foreach(TacticalCharacter character in party.v) GetTile(character.posX, character.posZ).isOccupied = true;
+        foreach(TacticalNPC npc in enemies.v) GetTile(npc.posX, npc.posZ).isOccupied = true;
     }
 }
