@@ -8,6 +8,7 @@ public class ActivableTile : Activable
     public TacticalTileEventSO  onTileSelected;
 
     public TacticalTile         tile;
+    public Material             TMPinUseMaterial;
 
     void Awake()
     {

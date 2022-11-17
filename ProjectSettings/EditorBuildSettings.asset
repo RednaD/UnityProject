@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/MainScene.unity
     guid: 67f0dbd6162583c23b26360d7b3d893f
   - enabled: 1
-    path: Assets/Game/Scenes/Level1.unity
+    path: Assets/Game/Scenes/TacticalScene.unity
     guid: 1f1754cdf87ca616791d2ea5f84247c8
   m_configObjects: {}

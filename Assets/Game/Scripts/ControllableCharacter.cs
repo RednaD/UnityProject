@@ -5,6 +5,7 @@ using UnityEngine;
 public class ControllableCharacter : Controllable
 {
     public CollectionVariable   inventory;
+    public Activable            equipedObject;
 
     [Header ("Selection")]
     public CharacterEventSO     onCharacterSelected;
@@ -15,11 +16,11 @@ public class ControllableCharacter : Controllable
     public TacticalCharacter    character;
 
     [Header ("Stats")]
-    public int          life;
-    public int          lifeMax;
-    public WeaponSO     weapon;
-    public int          move;
-    public bool         canJump;
+    public int                  life;
+    public int                  lifeMax;
+    public WeaponSO             weapon;
+    public int                  move;
+    public bool                 canJump;
 
     void Awake()
     {
@@ -40,6 +41,11 @@ public class ControllableCharacter : Controllable
     public void AddToInventory(CollectableSO item)
     {
         inventory.v.Add(item);
+    }
+
+    public void UseObject()
+    {
+        if (equipedObject != null) equipedObject.TryInteract();
     }
 
     public void DealDamage(TacticalNPC target)

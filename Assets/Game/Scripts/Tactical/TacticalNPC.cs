@@ -35,7 +35,6 @@ public class TacticalNPC : ActivableNPC           // All Playables on the board 
 
     public void GetContextMaterial()                                  // Old?
     {
-        //if (isTarget) renderer.material.color = Color.yellow;   // TODO: replace with palette
         if (!isTargetable) return;
         if (CheckIfInteractable()) GetComponent<Renderer>().material.color = Color.green;   // TODO: replace with palette
         else ResetMaterial();
@@ -43,13 +42,9 @@ public class TacticalNPC : ActivableNPC           // All Playables on the board 
 
     public void Reset()
     {
-        //if (selection == null) selection = GetComponent<Selectable>();
-        //if (selection == null) Debug.Log("Ousp!");
         ResetState();
         isTargetable = defaultTargetable;
-
         ResetMaterial();
-        //Debug.Log("Bah alors?");
     }
 
     public void ResetMaterial()
@@ -69,7 +64,7 @@ public class TacticalNPC : ActivableNPC           // All Playables on the board 
         Material GetMaterial();
     }
 
-    public void MoveToTile(TacticalTile tile)       // TODO COROUTINE !!
+    public void MoveToTile(TacticalTile tile)       // TODO COROUTINE!!
     {
         if (!GetState()) return;
         Debug.Log(name + " is moving");

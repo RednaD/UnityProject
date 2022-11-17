@@ -11,31 +11,15 @@ public class TabGroup : MonoBehaviour
     public IntVariable      index;
     int                     indexMax;
 
-    bool                    initDone = false;
     public CharacterEventSO resetCharacterSelection;
     TacticalCharacter       character;
 
     public void Awake()
     {
-        _tabs = GetComponentsInChildren<Tab>();
+        _tabs = GetComponentsInChildren<Tab>(true);
         indexMax = _tabs.Length - 1;
         index.v = System.Array.IndexOf(_tabs, defaultTab);
-        Debug.Log("Nooooo");
-        //Reset();
-        //OnTabSelected(defaultTab);
-        initDone = true;
     }
-
-    /*public void OnEnable()
-    {
-        if (initDone)
-        {
-            Refresh();
-            index.v = System.Array.IndexOf(_tabs, defaultTab);
-            if (defaultTab.isInteractable) OnTabSelected(defaultTab);
-            else OnTabSelected(_tabs[FindNextEnableTab(1)]);
-        }
-    }*/
 
     public void OnTabClickedOn(Interactable tab)
     {

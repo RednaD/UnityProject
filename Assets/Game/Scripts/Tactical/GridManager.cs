@@ -114,6 +114,7 @@ public class GridManager : MonoBehaviour
     {
         ResetGrid();
         //foreach(TacticalCharacter character in party.v) character.onSetSelection(activeCharacter);
+        Debug.Log(activeCharacter);
         onShowCharacterActions.Raise(activeCharacter);
     }
 
@@ -159,6 +160,10 @@ public class GridManager : MonoBehaviour
             }
         }
         foreach(TacticalCharacter character in party.v) GetTile(character.posX, character.posZ).isOccupied = true;
-        foreach(TacticalNPC npc in enemies.v) GetTile(npc.posX, npc.posZ).isOccupied = true;
+        foreach(TacticalNPC npc in enemies.v)
+        {
+            npc.Reset();
+            GetTile(npc.posX, npc.posZ).isOccupied = true;
+        }
     }
 }

@@ -6,14 +6,23 @@ public class GameController : MonoBehaviour
 {
     public IController          controller;
 
+    public bool                 isOccupied;
+
     public void Awake()
     {
         controller = GetComponent<IController>();
+        isOccupied = false;
     }
 
     public void Update()
     {
-        controller.HandleInput();
+        if (!isOccupied) controller.HandleInput();
+    }
+
+
+    public void SetOccupied(bool state)
+    {
+        isOccupied = state;
     }
 }
 

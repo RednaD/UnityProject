@@ -81,8 +81,8 @@ public class TacticalCharacter : ControllableCharacter           // All Playable
 
     public void MoveToTile(TacticalTile tile)       // TODO COROUTINE !!
     {
-        Debug.Log(name + " is moving");
         if (!GetState()) return;
+        Debug.Log(name + " is moving");
         SetToTile(tile);
         actionsLeft.Remove(tacticalActionSet.moving);
         onActionEnded.Raise();

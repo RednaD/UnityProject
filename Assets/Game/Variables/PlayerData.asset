@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11357809bbda574c09b0cc82329f4c5d, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  saveName: Redna
+  choices:
+  - {fileID: 11400000, guid: 1a2bbdcf9ab51134ca4d01420f07c122, type: 2}
+  - {fileID: 11400000, guid: 18b97596a49ce96cdb489b544a61d0e0, type: 2}
+  - {fileID: 11400000, guid: bfbab5b408e54b647847c65457dc6064, type: 2}
+  currentScene:
+    m_Handle: 0

@@ -40,7 +40,7 @@ public abstract class Activable : MonoBehaviour, Interactable
 
     public void TryInteract()
     {
-        if (!isInteractable || !allowedStates.Contains(stateMachine.v)) return;
+        if (!isInteractable || (allowedStates.Count != 0 && !allowedStates.Contains(stateMachine.v))) return;
         OnSelect();
     }
     
@@ -74,8 +74,8 @@ public abstract class Activable : MonoBehaviour, Interactable
     {
         if (!isActive)
         {
-            if (state) renderer.material = hoveredMaterial; // TODO StartAnimation
-            else renderer.material = defaultMaterial;
+            if (state) GetComponent<Renderer>().material = hoveredMaterial; // TODO StartAnimation
+            else GetComponent<Renderer>().material = defaultMaterial;
             //else ResetMaterial(); // TODO StopAnimation
         }
     }

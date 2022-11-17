@@ -9,13 +9,18 @@ public class ActionController : MonoBehaviour, IController
     //public SelectionVariable    selection;
 
     //public IntVariable  delay;
-    public BoolVariable     isButtonPressed;
-    public ActionCharacter  controllable;
+    public BoolVariable         isButtonPressed;
+    public ActionCharacter      controllable;
 
     public void HandleInput()
     {
         // Movements
         if (controllable.canMove) controllable.Move();
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            controllable.UseObject();
+        }
 
         // Interactions
         if (isButtonPressed.v)
