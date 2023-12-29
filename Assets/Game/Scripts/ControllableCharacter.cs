@@ -45,11 +45,26 @@ public class ControllableCharacter : Controllable
 
     public void UseObject()
     {
-        if (equipedObject != null) equipedObject.TryInteract();
+        if (equipedObject != null) equipedObject.TryInteract(InteractionType.action);
     }
 
-    public void DealDamage(TacticalNPC target)
+// TODO ce serait plutôt au perso de calculer les dommages car il a accès à toutes les infos et pas l'arme
+// TODO vérifier avant qui attaque
+    /*public void DealDamage(TacticalNPC target)
     {
+        if (!GetState()) return;
         Debug.Log(name + " attacks " + target.name);
-    }
+        Debug.Log(target.name + " a " + target.life + " de vie");
+        Debug.Log(weapon.name);
+        Debug.Log(weapon.name + " a " + weapon.Power + " d'attaque");
+        //weapon.ComputeDamages();
+        target.life -= weapon.Power;
+        Debug.Log(target.name + " a " + target.life + " de vie");
+        if (target.life <= 0)
+            target.Dies();
+        Debug.Log(name + " actionsLeft " + character.actionsLeft);
+        character.actionsLeft.Remove(character.tacticalActionSet.moving);
+        Debug.Log(name + " actionsLeft " + character.actionsLeft);
+        character.onActionEnded.Raise();
+    }*/
 }

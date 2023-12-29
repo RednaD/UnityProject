@@ -19,7 +19,6 @@ public class GameController : MonoBehaviour
         if (!isOccupied) controller.HandleInput();
     }
 
-
     public void SetOccupied(bool state)
     {
         isOccupied = state;

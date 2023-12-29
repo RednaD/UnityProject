@@ -5,15 +5,19 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     public CharacterEventSO     onShowCharacterActions;
+    //public CharacterEventSO     onFirstCharacterSelected;
+    //public InteractionTypeEnum  InteractionType;
 
     public TacticalTile[,]      grid;
     public TacticalTile         emptyTile;
-    public PartySO_GO           partyGO;
+    public PartySO_GO           partyPool;
     public PartySO_TC           party;
-    public PartySO_GO           enemiesGO;
-    public GroupeSO_TNPC        enemies;
+    public PartySO_GO           enemiesPool;
+    public GroupeSO_TNPC        enemies;    // TODO make it so only a few are selected by random
     public List<TacticalTile>   startPosParty;
     public List<TacticalTile>   startPosEnemies;
+
+    // TODO ajouter case apparition persos dans niveau (apparition puis va à case assignée au-dessus)
 
     float minX;
     float minZ;
@@ -24,7 +28,9 @@ public class GridManager : MonoBehaviour
 
     //public TacticalCharacter        player; // TODO instanciate prefabs later
 
-    public void Awake()
+    //TODO ajouter des poin 'characters' qu'on place sur la map à l'endroit où on veut les voir arriver
+    //public void Awake()
+    public void Init()
     {
         TacticalTile[] mapToLoad = GameObject.FindObjectsOfType<TacticalTile>();
         minX = float.MaxValue;
@@ -71,7 +77,6 @@ public class GridManager : MonoBehaviour
         {
             for (int j = 0; j < lenX; j++)
             {
-                //Debug.Log(grid[i, j]);
                 if (grid[i, j] == null)
                 {
                     grid[i, j] = emptyTile;
@@ -79,64 +84,6 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-
-        GameObject playerGO;
-        TacticalCharacter playerTC;
-        party.v.Clear();
-        i = 0;
-        while (i < partyGO.v.Count)
-        {
-            playerGO = Instantiate(partyGO.v[i]);
-            playerTC = playerGO.GetComponent<TacticalCharacter>();
-            //playerTC.move = new movementBehaviour;
-            playerTC.SetToTile(startPosParty[i]);
-            playerTC.Reset();
-            party.v.Add(playerTC);
-            i++;
-        }
-
-        GameObject enemyGO;
-        TacticalNPC enemyTC;
-        enemies.v.Clear();
-        i = 0;
-        while (i < enemiesGO.v.Count)
-        {
-            enemyGO = Instantiate(enemiesGO.v[i]);
-            enemyTC = enemyGO.GetComponent<TacticalNPC>();
-            enemyTC.SetToTile(startPosEnemies[i]);
-            enemyTC.Reset();
-            enemies.v.Add(enemyTC);
-            i++;
-        }
-    }
-
-    public void OnCharacterSelected(TacticalCharacter activeCharacter)
-    {
-        ResetGrid();
-        //foreach(TacticalCharacter character in party.v) character.onSetSelection(activeCharacter);
-        Debug.Log(activeCharacter);
-        onShowCharacterActions.Raise(activeCharacter);
-    }
-
-    public void OnCharacterMoving(TacticalCharacter character)
-    {
-        ResetGrid();
-        //if (character.hasMoved) return;
-        GetTile(character.posX, character.posZ).FindReachableTiles(character, grid);
-    }
-
-    public void OnCharacterAttacking(TacticalCharacter character)
-    {
-        ResetGrid();
-        //if (character.hasAttacked) return;
-        character.FindReachableTargets(enemies);
-    }
-
-    public void OnCharacterUsingSpecial(TacticalCharacter character)
-    {
-        ResetGrid();
-        //if (character.hasAttacked) return;
-        //character.FindReachableTargets(enemies);
     }
 
     public TacticalTile GetTile(float x, float z)
@@ -144,13 +91,12 @@ public class GridManager : MonoBehaviour
         return grid[Mathf.FloorToInt(z), Mathf.FloorToInt(x)];
     }
 
-    public void OnNewTurn()
+    public void OnResetGrid()
     {
-        foreach(TacticalCharacter character in party.v) character.Reset();
-        ResetGrid();
+        //StartCoroutine(Reset());
     }
 
-    public void ResetGrid()
+    public IEnumerator Reset(PartySO_TC party, GroupeSO_TNPC enemies)     // TODO rename Reset
     {
         for (int i = 0; i < lenZ; i++)
         {
@@ -165,5 +111,7 @@ public class GridManager : MonoBehaviour
             npc.Reset();
             GetTile(npc.posX, npc.posZ).isOccupied = true;
         }
+        Debug.Log("Grid reseted");
+        yield return null;
     }
 }

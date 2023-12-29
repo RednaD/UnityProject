@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 707a7200778dec688a2ed06e0950a33b, type: 2}
   range: 5
-  power: 2
+  Power: 0
   effect: {fileID: 0}
   effectProb: 0
   effectPower: 0

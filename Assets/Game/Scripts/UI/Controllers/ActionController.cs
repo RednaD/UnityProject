@@ -9,6 +9,8 @@ public class ActionController : MonoBehaviour, IController
     //public SelectionVariable    selection;
 
     //public IntVariable  delay;
+
+    public InteractionTypeEnum  InteractionType;
     public BoolVariable         isButtonPressed;
     public ActionCharacter      controllable;
 
@@ -50,7 +52,11 @@ public class ActionController : MonoBehaviour, IController
 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    interactable.TryInteract();
+                    interactable.TryInteract(InteractionType.selection);
+                }
+                else if (Input.GetMouseButtonUp(1))
+                {
+                    interactable.TryInteract(InteractionType.action);
                 }
             }
         }

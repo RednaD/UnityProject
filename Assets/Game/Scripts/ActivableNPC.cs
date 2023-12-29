@@ -6,6 +6,7 @@ public class ActivableNPC : Activable
 {
     [Header ("Selection")]
     public TacticalNPCEventSO   onNPCSelected;
+    public TacticalNPCEventSO   onNPCDies;
 
     // EUH...
     public TacticalNPC          nPC;
@@ -21,6 +22,7 @@ public class ActivableNPC : Activable
         Debug.Log(name + " is selected");
         if (allowedStates.Contains(stateMachine.v))
         {
+            Debug.Log("Event de Activable est ici !! " + nPC);
             onNPCSelected.Raise(nPC); // TODO Move character
         }
         else
@@ -42,5 +44,10 @@ public class ActivableNPC : Activable
         else GetComponent<Renderer>().material = defaultMaterial;
         //else if (isInteractable) GetComponent<Renderer>().material.color = Color.green;             // TODO type (ally, enemy...)
         //else ResetState();
+    }
+
+    public void Remove()
+    {
+        onNPCDies.Raise(nPC);
     }
 }

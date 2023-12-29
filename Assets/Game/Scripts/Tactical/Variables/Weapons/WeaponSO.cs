@@ -7,9 +7,9 @@ public class WeaponSO : CollectableSO
 {
     public WeaponTypeSO     type;
     public int              range;
-    public int              power;
+    public int              Power;
     public WeaponEffectSO   effect;
-    public int              effectProb;
+    public int              effectProb; // No proba here, what is prob?
     public int              effectPower;
     public AttackSO         attack1;
     public AttackSO         attack2;

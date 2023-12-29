@@ -11,6 +11,7 @@ public abstract class Activable : MonoBehaviour, Interactable
     public List<StateSO>                    allowedStates;
 
     // Interactable
+    public InteractionTypeEnum              InteractionType;
     public bool                             isInteractable;
     public bool                             defaultInteractableState;
 
@@ -38,10 +39,13 @@ public abstract class Activable : MonoBehaviour, Interactable
         isActive = false;
     }
 
-    public void TryInteract()
+    public void TryInteract(EnumSO interactionType)
     {
+        Debug.Log("In Activable, on TryInteract");
+        Debug.Log("EnumSO = " + interactionType);
         if (!isInteractable || (allowedStates.Count != 0 && !allowedStates.Contains(stateMachine.v))) return;
-        OnSelect();
+        if (interactionType == InteractionType.action) OnSelect();
+        //if (interactionType == InteractionType.action) OnAct();
     }
     
     public void SetInteractable(bool state)

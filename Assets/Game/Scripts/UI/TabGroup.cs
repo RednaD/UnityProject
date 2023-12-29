@@ -35,15 +35,22 @@ public class TabGroup : MonoBehaviour
         selectedTab.SetSelected();
     }
 
-    public void Update()                // TODO TO REMOVE!!
+    // public void Update()                // TODO TO REMOVE!!
+    // {
+    //     float wheelAxis = Input.GetAxis("Mouse ScrollWheel");
+    //     if (wheelAxis != 0)
+    //     {
+    //         int res = FindNextEnableTab(wheelAxis);
+    //         if (res != -1) OnTabSelected(_tabs[res]);
+    //         else resetCharacterSelection.Raise(null);
+    //     }
+    // }
+
+    public void TryChangeTab(float wheelAxis)
     {
-        float wheelAxis = Input.GetAxis("Mouse ScrollWheel");
-        if (wheelAxis != 0)
-        {
-            int res = FindNextEnableTab(wheelAxis);
-            if (res != -1) OnTabSelected(_tabs[res]);
-            else resetCharacterSelection.Raise(null);
-        }
+        int res = FindNextEnableTab(wheelAxis);
+        if (res != -1) OnTabSelected(_tabs[res]);
+        //else resetCharacterSelection.Raise(null);
     }
 
     public void DisableTab(Tab tab)
@@ -75,7 +82,6 @@ public class TabGroup : MonoBehaviour
 
     public void Refresh()
     {
-        Debug.Log(character);
         if (character.actionsLeft.Count == 0) resetCharacterSelection.Raise(null);
         index.v = System.Array.IndexOf(_tabs, defaultTab);
         foreach (Tab tab in _tabs)

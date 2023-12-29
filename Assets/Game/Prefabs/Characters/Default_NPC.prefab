@@ -28,6 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239522398162168364}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.491635, y: 0, z: -1.8420682}
   m_LocalScale: {x: 0.8000001, y: 0.8000001, z: 0.8000001}
@@ -35,7 +36,6 @@ Transform:
   m_Children:
   - {fileID: 239522399050398955}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &239522398162168353
 MeshFilter:
@@ -95,8 +95,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239522398162168364}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -117,12 +126,14 @@ MonoBehaviour:
   stateMachine: {fileID: 11400000, guid: a23d6db0e6083039b9d362691091eaa2, type: 2}
   allowedStates:
   - {fileID: 11400000, guid: 877732a1ca5842378a49483f9ef05101, type: 2}
+  InteractionType: {fileID: 11400000, guid: dd74f3b2f701d754db6207eb684a5a02, type: 2}
   isInteractable: 0
   defaultInteractableState: 0
   defaultMaterial: {fileID: 2100000, guid: 2f9ffa8ea23b96ae09dfc68db5f6ea9b, type: 2}
   hoveredMaterial: {fileID: 2100000, guid: cd9e934880aeac11b92fd09e4116de36, type: 2}
   onNPCSelected: {fileID: 11400000, guid: 68346b698ca1932de8d6aea21faef97f, type: 2}
   nPC: {fileID: 0}
+  onTacticalNPCDies: {fileID: 11400000, guid: 29481ce98cd35b246b0f1502fb81b8a9, type: 2}
   onCharacterMoving: {fileID: 0}
   onCharacterAttacking: {fileID: 0}
   onCharacterUsingSpecial: {fileID: 0}
@@ -192,13 +203,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239522399050398967}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.65, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 239522398162168352}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &239522399050398952
 MeshFilter:
@@ -258,8 +269,16 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 239522399050398967}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: -16, z: 0}

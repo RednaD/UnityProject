@@ -48,10 +48,17 @@ public class TacticalCharacter : ControllableCharacter           // All Playable
 
     public void onSetSelection(TacticalCharacter chara)
     {
-        SetState(chara == this);
-        SetInteractable(chara != this && actionsLeft.Count != 0);
+        SetSelectionState(chara == this);
+        //SetState(chara == this);
+        //SetInteractable(chara != this && actionsLeft.Count != 0);
     }
 
+
+    public void SetSelectionState(bool newSelectionState)
+    {
+        SetState(newSelectionState);
+        SetInteractable(!newSelectionState && actionsLeft.Count != 0);
+    }
     public void OnChangeMode(EnumSO newMode)
     {
         currentMode = newMode as StateSO;
@@ -84,6 +91,7 @@ public class TacticalCharacter : ControllableCharacter           // All Playable
         if (!GetState()) return;
         Debug.Log(name + " is moving");
         SetToTile(tile);
+        tile.isOccupied = true; // ???
         actionsLeft.Remove(tacticalActionSet.moving);
         onActionEnded.Raise();
         //CheckActions();
@@ -102,6 +110,26 @@ public class TacticalCharacter : ControllableCharacter           // All Playable
         actionsLeft.Clear();
         foreach (StateSO state in actionSet) actionsLeft.Add(state);
         ResetState();
+    }
+
+// TODO ce serait plutôt au perso de calculer les dommages car il a accès à toutes les infos et pas l'arme
+// TODO vérifier avant qui attaque
+    public void DealDamage(TacticalNPC target)
+    {
+        if (!GetState()) return;
+        Debug.Log(name + " attacks " + target.name);
+        Debug.Log(target.name + " a " + target.life + " de vie");
+        Debug.Log(weapon.name);
+        Debug.Log(weapon.name + " a " + weapon.Power + " d'attaque");
+        //weapon.ComputeDamages();
+        target.life -= weapon.Power;
+        Debug.Log(target.name + " a " + target.life + " de vie");
+        if (target.life <= 0)
+            target.Dies();
+        Debug.Log(name + " actionsLeft " + actionsLeft);
+        actionsLeft.Remove(tacticalActionSet.attacking);
+        Debug.Log(name + " actionsLeft " + actionsLeft);
+        onActionEnded.Raise();
     }
 
     /*public void CheckActions()

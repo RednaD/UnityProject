@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4786704024144268729}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8423332481798396243}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6018416523027372732
 MeshFilter:
@@ -93,9 +93,17 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4786704024144268729}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7252932992699802092
@@ -137,6 +145,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8423332481798396242}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -144,7 +153,6 @@ Transform:
   m_Children:
   - {fileID: 8483955367717097914}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8423332481798396247
 MeshFilter:
@@ -204,9 +212,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8423332481798396242}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3816070783968582914
@@ -225,14 +241,14 @@ MonoBehaviour:
   stateMachine: {fileID: 11400000, guid: a23d6db0e6083039b9d362691091eaa2, type: 2}
   allowedStates:
   - {fileID: 11400000, guid: a3c4b55ce4475d3b1ba0d4382b93ddcf, type: 2}
+  InteractionType: {fileID: 11400000, guid: dd74f3b2f701d754db6207eb684a5a02, type: 2}
   isInteractable: 0
   defaultInteractableState: 0
-  renderer: {fileID: 0}
   defaultMaterial: {fileID: 0}
   hoveredMaterial: {fileID: 2100000, guid: cd9e934880aeac11b92fd09e4116de36, type: 2}
   onTileSelected: {fileID: 11400000, guid: 1c26de1ea9b7a59b0bc4ea0fe95018e4, type: 2}
-  allowedState: {fileID: 11400000, guid: a3c4b55ce4475d3b1ba0d4382b93ddcf, type: 2}
   tile: {fileID: 0}
+  TMPinUseMaterial: {fileID: 0}
   isTarget: 0
   isWalkable: 0
   defaultWalkable: 0

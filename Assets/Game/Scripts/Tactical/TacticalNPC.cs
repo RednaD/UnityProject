@@ -5,6 +5,7 @@ using UnityEngine;
 public class TacticalNPC : ActivableNPC           // All Playables on the board (party)
 {
     [Header ("Tactical")]
+    public TacticalNPCEventSO   onTacticalNPCDies;
     public CharacterEventSO     onCharacterMoving;
     public CharacterEventSO     onCharacterAttacking;
     public CharacterEventSO     onCharacterUsingSpecial;
@@ -78,5 +79,14 @@ public class TacticalNPC : ActivableNPC           // All Playables on the board 
         transform.position = tile.CharacterPosNode.transform.position;
         posX = tile.posGridX;
         posZ = tile.posGridZ;
+    }
+
+//TODO trouver le moyen de le faire vraiment disparaître...
+    public void Dies()
+    {
+        Debug.Log(this + " is dead!!");
+        Debug.Log("Event de TacticalNPC est ici !! " + this);
+        onTacticalNPCDies.Raise(this as TacticalNPC);
+        gameObject.SetActive(false);
     }
 }
